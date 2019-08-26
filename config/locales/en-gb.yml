@@ -1,0 +1,3 @@
+# British strings go here for Rails i18n
+en-gb:
+  label_datetime: "DateTime"
