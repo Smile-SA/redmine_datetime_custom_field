@@ -4,13 +4,12 @@ module ApplicationHelper
   ###################
   # Plugin new method
   def datetime_for(field_id)
-    include_datetime_headers_tags
-
-    a = javascript_tag("var datetimepickerOptions={format: 'Y-m-d H:i', closeOnDateSelect:true };")
-    a << "\n".html_safe +
+    options = getDatetimepickerOptions
+    
+    a = "\n".html_safe +
       javascript_tag(
         "$(function() { " +
-        "$('##{field_id}').datetimepicker(datetimepickerOptions); " +
+        "$('##{field_id}').datetimepicker(#{options}); " +
         "});"
       )
     a
@@ -18,8 +17,28 @@ module ApplicationHelper
 
   ###################
   # Plugin new method
+  def getDatetimepickerOptions
+    start_of_week = Setting.start_of_week
+    start_of_week = l(:general_first_day_of_week, :default => '1') if start_of_week.blank?
+
+    # Redmine uses 1..7 (monday..sunday) in settings and locales
+    # JQuery uses 0..6 (sunday..saturday), 7 needs to be changed to 0
+    start_of_week = start_of_week.to_i % 7
+
+    jquery_locale = l('jquery.locale', :default => current_language.to_s)
+    options = "{" +
+        "format: 'Y-m-d H:i'," +
+        "dayOfWeekStart: #{start_of_week}," +
+        "closeOnDateSelect:true," +
+        "lang:'#{jquery_locale}'" +
+    "}";
+  end
+  
+=begin
+  ###################
+  # Plugin new method
   def include_datetime_headers_tags
-    return if @datetime_headers_tags_included
+    return '' if @datetime_headers_tags_included
 
     tags = ''.html_safe
     @datetime_headers_tags_included = true
@@ -44,9 +63,11 @@ module ApplicationHelper
 
     tags << "\n".html_safe +
       javascript_tag(
-        "jQuery.datetimepicker.setLocale('#{jquery_locale}');" +
+        "//console.log( 11111111111111111 );" +
+        "//jQuery.datetimepicker.setLocale('#{jquery_locale}');" +
         "var datetimepickerOptions={format: 'Y-m-d H:i', dayOfWeekStart: #{start_of_week}," +
           "closeOnDateSelect:true," +
+          "lang:'#{jquery_locale}'," +
           "id:'datetimepicker' };" +
 
          "function datetimepickerCreate(id){" +
@@ -60,9 +81,11 @@ module ApplicationHelper
       tags << "\n".html_safe + javascript_include_tag("i18n/datepicker-#{jquery_locale}.js")
     end
 
-   tags
+    tags
+
 #      end
   end
+=end
 end
 
 # "$('##{field_id}').after('<input class=\"ui-datepicker-trigger\" id=\"'##{field_id}_img'\" src=\"" + image_path('calendar.png') + "\" />');" +
