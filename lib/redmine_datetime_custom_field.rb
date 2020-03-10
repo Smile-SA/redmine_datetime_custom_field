@@ -1,6 +1,6 @@
 
 Rails.configuration.to_prepare do
-  require 'hooks'
+  require 'redmine_datetime_custom_field/hooks/hooks'
   
   require 'datetime_custom_field_application_helper_patch'
   require 'datetime_custom_field_field_format_patch'
