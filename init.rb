@@ -1,7 +1,8 @@
-require 'redmine'
-
 Rails.logger.info 'o=>'
 Rails.logger.info 'o=>Starting Redmine Datetime Custom Field plugin for Redmine'
+
+require 'redmine'
+require 'redmine_datetime_custom_field'
 
 Redmine::Plugin.register :redmine_datetime_custom_field do
   name 'Redmine Datetime Custom Field plugin'
@@ -10,18 +11,4 @@ Redmine::Plugin.register :redmine_datetime_custom_field do
   url "https://github.com/Smile-SA/redmine_datetime_custom_field"
   version '1.0.1'
   requires_redmine :version_or_higher => '3.1.1'
-end
-
-# Custom patches
-#require_dependency 'hooks'
-
-Rails.application.config.to_prepare do
-  require 'hooks'
-  
-  require_dependency 'datetime_custom_field_application_helper_patch'
-  require_dependency 'datetime_custom_field_field_format_patch'
-  require_dependency 'datetime_custom_field_custom_fields_helper_patch'
-
-  require_dependency 'datetime_custom_field_query_patch'
-  Query.send(:prepend, DatetimeCustomFieldQueryPatch)
 end
