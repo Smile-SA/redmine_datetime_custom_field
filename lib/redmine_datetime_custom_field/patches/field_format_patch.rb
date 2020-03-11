@@ -1,4 +1,5 @@
 require_dependency 'redmine/field_format'
+require_dependency 'application_helper'
 
 module Redmine
   module FieldFormat
