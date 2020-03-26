@@ -3,8 +3,8 @@ require_dependency 'application_helper'
 module ApplicationHelper
   ###################
   # Plugin new method
-  def datetime_for(field_id)
-    options = getDatetimepickerOptions
+  def datetime_for( field_id, aOptions = {} )
+    options = getDatetimepickerOptions( aOptions )
     
     a = "\n".html_safe +
       javascript_tag(
@@ -17,7 +17,7 @@ module ApplicationHelper
 
   ###################
   # Plugin new method
-  def getDatetimepickerOptions
+  def getDatetimepickerOptions( aOptions = {} )
     start_of_week = Setting.start_of_week
     start_of_week = l(:general_first_day_of_week, :default => '1') if start_of_week.blank?
 
@@ -25,13 +25,17 @@ module ApplicationHelper
     # JQuery uses 0..6 (sunday..saturday), 7 needs to be changed to 0
     start_of_week = start_of_week.to_i % 7
 
-    jquery_locale = l('jquery.locale', :default => current_language.to_s)
-    options = "{" +
-        "format: 'Y-m-d H:i'," +
-        "dayOfWeekStart: #{start_of_week}," +
-        "closeOnDateSelect:true," +
-        "lang:'#{jquery_locale}'" +
-    "}";
+    jquery_locale = l( 'jquery.locale', :default => current_language.to_s )
+    options = {
+        'format' => 'Y-m-d H:i',
+        'dayOfWeekStart' => start_of_week,
+        'closeOnDateSelect' => true,
+        'lang' => jquery_locale
+    }.merge( aOptions )
+    
+    options = ActiveSupport::JSON.encode( options )
+    puts options.inspect
+    options
   end
   
 =begin
