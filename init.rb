@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_datetime_custom_field do
   author 'Anthony LEGIRET <anthony.legiret@smile.fr>, Jérôme BATAILLE <jerome.bataille@smile.fr>'
   description 'This plugin adds the DateTime type to Redmine custom fields'
   url "https://github.com/Smile-SA/redmine_datetime_custom_field"
-  version '1.0.1'
+  version '1.0.2'
   requires_redmine :version_or_higher => '3.1.1'
 end
 
