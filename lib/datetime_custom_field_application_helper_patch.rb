@@ -24,15 +24,6 @@ module ApplicationHelper
     tags = ''.html_safe
     @datetime_headers_tags_included = true
 
-#    content_for :header_tags do
-#      tags = javascript_include_tag(
-#          'jquery.datetimepicker.js',
-#          plugin: 'redmine_datetime_custom_field'
-#        ) +
-#        stylesheet_link_tag(
-#          'jquery.datetimepicker.css',
-#          plugin: 'redmine_datetime_custom_field'
-#        )
     start_of_week = Setting.start_of_week
     start_of_week = l(:general_first_day_of_week, :default => '1') if start_of_week.blank?
 
@@ -61,8 +52,5 @@ module ApplicationHelper
     end
 
    tags
-#      end
   end
 end
-
-# "$('##{field_id}').after('<input class=\"ui-datepicker-trigger\" id=\"'##{field_id}_img'\" src=\"" + image_path('calendar.png') + "\" />');" +

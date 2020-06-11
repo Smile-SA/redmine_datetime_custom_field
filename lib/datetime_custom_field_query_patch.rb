@@ -111,3 +111,4 @@ module DatetimeCustomFieldQueryPatch
   end
 end
 
+Query.send(:prepend, DatetimeCustomFieldQueryPatch)

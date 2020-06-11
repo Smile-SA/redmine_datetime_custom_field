@@ -13,11 +13,7 @@ module Redmine
       #############################
       # Plugin specific : REWRITTEN
       def cast_single_value(custom_field, value, customized=nil)
-        DateTime.parse(value).strftime(l('time.formats.default'))
-        # (custom_field.show_hours=='1' ? value.to_time : value.to_date) rescue nil
-
-        # Source code from original Date CustomField
-        # value.to_datetime rescue nil
+        value.to_time rescue nil
       end
 
       #############################

@@ -10,4 +10,8 @@ https://xdsoft.net/jqplugins/datetimepicker/
 
 # TODO
 
-Merge with https://github.com/nanego/redmine_datetime_custom_field ?
+Update with last version of nanego's plugin
+
+# CHANGELOG
+
+V1.0.3 Bugfix : display date time with User format, keep timezone conversion
