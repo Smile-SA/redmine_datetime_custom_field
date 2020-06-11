@@ -6,7 +6,7 @@ module ApplicationHelper
   def datetime_for(field_id)
     include_datetime_headers_tags
 
-    a = javascript_tag("var datetimepickerOptions={format: 'Y-m-d H:i', closeOnDateSelect:true };")
+    a = javascript_tag("var datetimepickerOptions={format: 'Y-m-d H:i', closeOnDateSelect:false };")
     a << "\n".html_safe +
       javascript_tag(
         "$(function() { " +
@@ -37,7 +37,7 @@ module ApplicationHelper
       javascript_tag(
         "jQuery.datetimepicker.setLocale('#{jquery_locale}');" +
         "var datetimepickerOptions={format: 'Y-m-d H:i', dayOfWeekStart: #{start_of_week}," +
-          "closeOnDateSelect:true," +
+          "closeOnDateSelect:false," +
           "id:'datetimepicker' };" +
 
          "function datetimepickerCreate(id){" +

@@ -17,4 +17,5 @@ Update with last version of nanego's plugin
 
 # CHANGELOG
 
+V1.0.4 farwarx request : do not close date time popup on date select
 V1.0.3 Bugfix : display date time with User format, keep timezone conversion
