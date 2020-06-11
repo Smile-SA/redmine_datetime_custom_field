@@ -3,6 +3,9 @@ Redmine DateTime Custom Field Plugin
 
 This plugin adds DateTime Type to standard custom fields.
 
+* This is a fork of Nanego's plugin : https://github.com/nanego/redmine_datetime_custom_field
+* No Database migration, keep user Timezone when displaying DateTime
+
 No tests have been implemented so far
 
 Thanks to XDSoft for JS DateTime Picker :
